@@ -1,13 +1,14 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3333",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3333",
     "type-check": "tsc",
     "deploy": "serverless"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^2.6.2",
     "next": "^12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
