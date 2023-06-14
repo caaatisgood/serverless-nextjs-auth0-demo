@@ -1,0 +1,16 @@
+myNextApplication:
+  component: "@sls-next/serverless-component@3.7.0"
+  inputs:
+    name:
+      defaultLambda: nextjsDefaultLambda
+      apiLambda: nextjsApiLambda
+
+    roleArn: "arn:aws:iam::161186190113:role/nextjs-serverless"
+    policy: "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+
+    cloudfront:
+      distributionId: E1LYZ0LMV02REG
+      comment: serverless next.js app
+
+    bucketName: serverless-nextjs-bucket
+    bucketRegion: eu-west-2
