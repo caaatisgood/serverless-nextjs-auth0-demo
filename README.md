@@ -137,3 +137,11 @@ cp serverless.yml.example serverless.yml
 ## Deployment
 
 This project uses GitHub Actions to make deployment to AWS. See `.github/workflows/deploy.yml` for more info.
+
+## Issue
+
+The Lambda function seems to always return 502 ERROR (LambdaValidationError from cloudfront) when calling auth endpoints such as `/api/auth/login`, `/api/auth/me`, etc provided by `@auth0/nextjs-auth0`.
+
+![me-api-502](./docs/screenshot-me-api-502.png)
+
+![login-api-502](./docs/screenshot-login-api-502.png)

@@ -7,16 +7,19 @@ const IndexPage = () => {
   const { user, isLoading } = useUser()
 
   return (
-    <Layout title="Home | Serverless Next.js + Auth0 Demo App">
+    <Layout title="Alt | Serverless Next.js + Auth0 Demo App">
       <h1>Serverless Next.js + Auth0 Demo App</h1>
-      <p>This is a demo project for reproducing auth endpoints failure when using <code>serverless-next.js</code> and <code>@auth0/nextjs-auth0</code></p>
+      <p>This is a page that uses explicitly defined auth endpoints</p>
       {isLoading && (
         <p>
           is loading user info
         </p>
       )}
       {!isLoading && !user && (
-        <Link href="/api/auth/login">Login</Link>
+        <>
+          <Link href="/api/auth/alt-login">Login</Link>{" "}
+          (via <code>/api/auth/alt-login</code>)
+        </>
       )}
       {!isLoading && user && (
         <>
@@ -35,7 +38,10 @@ const IndexPage = () => {
         </>
       )}
       {!isLoading && user && (
-        <Link href="/api/auth/logout">Logout</Link>
+        <>
+          <Link href="/api/auth/alt-logout">Logout</Link>{" "}
+          (via <code>/api/auth/alt-logout</code>)
+        </>
       )}
     </Layout>
   )

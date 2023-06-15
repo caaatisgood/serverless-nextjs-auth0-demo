@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { useUser } from '@auth0/nextjs-auth0/client'
 
 type Props = {
   children?: ReactNode
@@ -9,8 +8,6 @@ type Props = {
 }
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
-  const { user } = useUser()
-
   return (
     <div>
       <Head>
@@ -20,13 +17,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       </Head>
       <header>
         <nav>
-          <Link href="/">Home</Link>
-          {user && (
-            <>
-              {" "}|{" "}
-              <Link href="/api/auth/logout">Logout</Link>
-            </>
-          )}
+          <Link href="/">Home</Link>{" | "}
+          <Link href="/alt">Alt</Link>
         </nav>
       </header>
       {children}
