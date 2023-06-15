@@ -7,7 +7,7 @@ const IndexPage = () => {
   const { user, isLoading } = useUser()
 
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
+    <Layout title="Home | Next.js + Serverless Next.js + Auth0 Example">
       <h1>Hello Next.js 👋</h1>
       {isLoading && (
         <p>

@@ -1,47 +1,136 @@
-# TypeScript Next.js example
+# `serverless-next.js` + `@auth0/nextjs-auth0` Example
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+This is an app for reproducing auth failures when using [`@auth0/nextjs-auth0`](https://github.com/auth0/nextjs-auth0) with [`serverless-next.js`](https://github.com/serverless-nextjs/serverless-next.js).
 
-## Deploy your own
+## Installation & setup
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)
+### Install dependencies
+```bash
+pnpm i
+```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+### Configure environment variables
 
-## How to use it?
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+**Create `.env` file**
 
 ```bash
-npx create-next-app --example with-typescript with-typescript-app
+cp .env.example .env
 ```
+
+**Update environment variables in `.env`**
 
 ```bash
-yarn create next-app --example with-typescript with-typescript-app
+AUTH0_SECRET=<YOUR_AUTH0_SESSION_COOKIE_SECRET>
+AUTH0_BASE_URL=http://localhost:3333
+AUTH0_ISSUER_BASE_URL=<https://YOUR_AUTH0_TENANT.auth0.com>
+AUTH0_CLIENT_ID=<YOUR_AUTH0_CLIENT_ID>
+AUTH0_CLIENT_SECRET=<YOUR_AUTH0_CLIENT_SECRET>
+SLS_ROLE_ARN=<arn:aws:iam::1234567890:role/NAME_OF_YOUR_ROLE>
+SLS_POLICY=<arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole>
+SLS_CLOUDFRONT_DISTRIBUTION_ID=E1234567890ABC
+SLS_BUCKET_NAME=<YOUR_APP_S3_BUCKET_NAME>
+SLS_BUCKET_REGION=<YOUR_APP_S3_BUCKET_REGION>
 ```
+
+**Add GitHub Action Secrets**
+
+In addition to the environment variables listed above, add the following to your GitHub Action Secrets:
 
 ```bash
-pnpm create next-app --example with-typescript with-typescript-app
+AWS_ACCESS_KEY_ID=<YOUR_AWS_ACCESS_KEY_ID>
+AWS_SECRET_ACCESS_KEY=<YOUR_AWS_SECRET_ACCESS_KEY>
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### AWS and serverless configs
 
-## Notes
+<details>
+<summary>Create a user with the following policy</summary>
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": {
+        "Effect": "Allow",
+        "Action": [
+            "acm:DescribeCertificate",
+            "acm:ListCertificates",
+            "acm:RequestCertificate",
+            "cloudfront:CreateCloudFrontOriginAccessIdentity",
+            "cloudfront:CreateDistribution",
+            "cloudfront:CreateInvalidation",
+            "cloudfront:GetDistribution",
+            "cloudfront:GetDistributionConfig",
+            "cloudfront:ListCloudFrontOriginAccessIdentities",
+            "cloudfront:ListDistributions",
+            "cloudfront:ListDistributionsByLambdaFunction",
+            "cloudfront:ListDistributionsByWebACLId",
+            "cloudfront:ListFieldLevelEncryptionConfigs",
+            "cloudfront:ListFieldLevelEncryptionProfiles",
+            "cloudfront:ListInvalidations",
+            "cloudfront:ListPublicKeys",
+            "cloudfront:ListStreamingDistributions",
+            "cloudfront:UpdateDistribution",
+            "cloudfront:TagResource",
+            "cloudfront:UntagResource",
+            "cloudfront:ListTagsForResource",
+            "iam:AttachRolePolicy",
+            "iam:CreateRole",
+            "iam:CreateServiceLinkedRole",
+            "iam:GetRole",
+            "iam:PutRolePolicy",
+            "iam:PassRole",
+            "lambda:CreateFunction",
+            "lambda:EnableReplication",
+            "lambda:DeleteFunction",
+            "lambda:GetFunction",
+            "lambda:GetFunctionConfiguration",
+            "lambda:PublishVersion",
+            "lambda:UpdateFunctionCode",
+            "lambda:UpdateFunctionConfiguration",
+            "lambda:ListTags",
+            "lambda:TagResource",
+            "lambda:UntagResource",
+            "route53:ChangeResourceRecordSets",
+            "route53:ListHostedZonesByName",
+            "route53:ListResourceRecordSets",
+            "s3:CreateBucket",
+            "s3:GetAccelerateConfiguration",
+            "s3:GetObject",
+            "s3:ListBucket",
+            "s3:PutAccelerateConfiguration",
+            "s3:PutBucketPolicy",
+            "s3:PutObject",
+            "s3:PutBucketTagging",
+            "s3:GetBucketTagging",
+            "lambda:ListEventSourceMappings",
+            "lambda:CreateEventSourceMapping",
+            "iam:UpdateAssumeRolePolicy",
+            "iam:DeleteRolePolicy",
+            "sqs:CreateQueue",
+            "sqs:DeleteQueue",
+            "sqs:GetQueueAttributes",
+            "sqs:SetQueueAttributes"
+        ],
+        "Resource": "*"
+    }
+}
 ```
-npm install --save-dev typescript
-```
+</details>
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+- Grab the access key id and secret access key from Security details and set them in your GitHub Action Secrets
 
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
+- CloudFront
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+  Create a new CloudFront distribution. Set the distribution id in `SLS_CLOUDFRONT_DISTRIBUTION_ID`
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+- S3
 
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+  The serverless framework will create a S3 bucket for you when deploy. So all you need to do is to specify bucket name and region in the environment variables.
+
+- Lambda
+
+  The serverless framework will create Lambda(s) for you when deploy. You could change the name of the Lambda(s) in `serverless.yml`.
+
+## Deployment
+
+This project uses GitHub Actions to make deployment to AWS. See `.github/workflows/deploy.yml` for more info.
