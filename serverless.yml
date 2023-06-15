@@ -13,12 +13,12 @@ myNextApplication:
       defaultLambda: nextjsDefaultLambda
       apiLambda: nextjsApiLambda
 
-    roleArn: "arn:aws:iam::161186190113:role/nextjs-serverless"
-    policy: "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+    roleArn: ${env.SLS_ROLE_ARN}
+    policy: ${env.SLS_POLICY}
 
     cloudfront:
-      distributionId: E1LYZ0LMV02REG
+      distributionId: ${env.SLS_CLOUDFRONT_DISTRIBUTION_ID}
       comment: serverless next.js app
 
-    bucketName: serverless-nextjs-bucket
-    bucketRegion: eu-west-2
+    bucketName: ${env.SLS_BUCKET_NAME}
+    bucketRegion: ${env.SLS_BUCKET_REGION}
