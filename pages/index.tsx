@@ -7,8 +7,9 @@ const IndexPage = () => {
   const { user, isLoading } = useUser()
 
   return (
-    <Layout title="Home | Next.js + Serverless Next.js + Auth0 Example">
-      <h1>Hello Next.js 👋</h1>
+    <Layout title="Home | Serverless Next.js + Auth0 Demo App">
+      <h1>Serverless Next.js + Auth0 Demo App</h1>
+      <p>This is a demo project for reproducing auth endpoints failure when using <code>serverless-next.js</code> and <code>@auth0/nextjs-auth0</code></p>
       {isLoading && (
         <p>
           is loading user info

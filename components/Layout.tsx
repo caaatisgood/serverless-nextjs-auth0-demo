@@ -30,6 +30,12 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
         </nav>
       </header>
       {children}
+      <hr />
+      <footer>
+        <a href="https://github.com/caaatisgood/serverless-nextjs-auth0-demo" target="_blank">
+          Source
+        </a>
+      </footer>
     </div>
   )
 }
