@@ -1,4 +1,4 @@
-# `serverless-next.js` + `@auth0/nextjs-auth0` Example
+# Serverless Next.js + Auth0 Demo
 
 This is an app for reproducing auth failures when using [`@auth0/nextjs-auth0`](https://github.com/auth0/nextjs-auth0) with [`serverless-next.js`](https://github.com/serverless-nextjs/serverless-next.js).
 
@@ -133,6 +133,10 @@ cp serverless.yml.example serverless.yml
 - Lambda
 
   The serverless framework will create Lambda(s) for you when deploy. You could change the name of the Lambda(s) in `serverless.yml`.
+
+### Auth0
+
+For Auth0 setup please refer to [`@auth0/nextjs-auth0`](https://github.com/auth0/nextjs-auth0).
 
 ## Deployment
 
