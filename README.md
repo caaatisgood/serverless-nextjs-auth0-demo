@@ -25,11 +25,6 @@ AUTH0_BASE_URL=http://localhost:3333
 AUTH0_ISSUER_BASE_URL=<https://YOUR_AUTH0_TENANT.auth0.com>
 AUTH0_CLIENT_ID=<YOUR_AUTH0_CLIENT_ID>
 AUTH0_CLIENT_SECRET=<YOUR_AUTH0_CLIENT_SECRET>
-SLS_ROLE_ARN=<arn:aws:iam::1234567890:role/NAME_OF_YOUR_ROLE>
-SLS_POLICY=<arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole>
-SLS_CLOUDFRONT_DISTRIBUTION_ID=E1234567890ABC
-SLS_BUCKET_NAME=<YOUR_APP_S3_BUCKET_NAME>
-SLS_BUCKET_REGION=<YOUR_APP_S3_BUCKET_REGION>
 ```
 
 **Add GitHub Action Secrets**
@@ -42,6 +37,12 @@ AWS_SECRET_ACCESS_KEY=<YOUR_AWS_SECRET_ACCESS_KEY>
 ```
 
 ### AWS and serverless configs
+
+**Create `serverless.yml` file**
+
+```bash
+cp serverless.yml.example serverless.yml
+```
 
 <details>
 <summary>Create a user with the following policy</summary>
@@ -119,13 +120,15 @@ AWS_SECRET_ACCESS_KEY=<YOUR_AWS_SECRET_ACCESS_KEY>
 
 - Grab the access key id and secret access key from Security details and set them in your GitHub Action Secrets
 
+- Update `roleArn` and `policy` in `serverless.yml`
+
 - CloudFront
 
-  Create a new CloudFront distribution. Set the distribution id in `SLS_CLOUDFRONT_DISTRIBUTION_ID`
+  Create a new CloudFront distribution. Set the distribution id in `serverless.yml`.
 
 - S3
 
-  The serverless framework will create a S3 bucket for you when deploy. So all you need to do is to specify bucket name and region in the environment variables.
+  The serverless framework will create a S3 bucket for you when deploy. So all you need to do is to specify bucket name and region in the `serverless.yml`.
 
 - Lambda
 
