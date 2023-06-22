@@ -8,7 +8,7 @@
     "deploy": "serverless"
   },
   "dependencies": {
-    "@auth0/nextjs-auth0": "git+https://git@github.com/caaatisgood/nextjs-auth0.git#65b0d357725110023e765767c78e3734a2adf468",
+    "@auth0/nextjs-auth0": "git+https://git@github.com/caaatisgood/nextjs-auth0.git#315f1a6c0b42ac1c19825f826e1d024b3e7200fa",
     "@sentry/nextjs": "^7.56.0",
     "next": "^12.1.0",
     "react": "^17.0.2",
