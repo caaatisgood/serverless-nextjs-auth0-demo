@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@auth0/nextjs-auth0':
-    specifier: git+https://git@github.com/caaatisgood/nextjs-auth0.git#ba131d7a8b1775704f7ce9893c8b7cece0ed140b
-    version: github.com/caaatisgood/nextjs-auth0/ba131d7a8b1775704f7ce9893c8b7cece0ed140b(next@12.1.0)
+    specifier: git+https://git@github.com/caaatisgood/nextjs-auth0.git#991e355eafcfb86355d8f469ead9db444fd75438
+    version: github.com/caaatisgood/nextjs-auth0/991e355eafcfb86355d8f469ead9db444fd75438(next@12.1.0)
   '@sentry/nextjs':
     specifier: ^7.56.0
     version: 7.56.0(next@12.1.0)(react@17.0.2)
@@ -4807,9 +4807,9 @@ packages:
       readable-stream: 3.6.2
     dev: true
 
-  github.com/caaatisgood/nextjs-auth0/ba131d7a8b1775704f7ce9893c8b7cece0ed140b(next@12.1.0):
-    resolution: {commit: ba131d7a8b1775704f7ce9893c8b7cece0ed140b, repo: https://git@github.com/caaatisgood/nextjs-auth0.git, type: git}
-    id: github.com/caaatisgood/nextjs-auth0/ba131d7a8b1775704f7ce9893c8b7cece0ed140b
+  github.com/caaatisgood/nextjs-auth0/991e355eafcfb86355d8f469ead9db444fd75438(next@12.1.0):
+    resolution: {commit: 991e355eafcfb86355d8f469ead9db444fd75438, repo: https://git@github.com/caaatisgood/nextjs-auth0.git, type: git}
+    id: github.com/caaatisgood/nextjs-auth0/991e355eafcfb86355d8f469ead9db444fd75438
     name: '@auth0/nextjs-auth0'
     version: 2.6.2
     engines: {node: '>=12.19.0'}
