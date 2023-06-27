@@ -5,8 +5,7 @@
     "build": "next build",
     "start": "next start -p 3333",
     "type-check": "tsc",
-    "deploy": "serverless",
-    "deploy-sls-comps-v1": "pnpm exec components-v1"
+    "deploy": "serverless"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "git+https://git@github.com/caaatisgood/nextjs-auth0.git#46f279c25a18c10a383d160ac299a3ec575b0229",
@@ -16,11 +15,10 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@serverless/cli": "^1.6.0",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
-    "serverless": "^3.33.0",
+    "serverless": "2.72.3",
     "typescript": "^4.8.3"
   }
 }
